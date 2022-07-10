@@ -59,7 +59,7 @@ header .current-date {
     text-transform: capitalize;
     font-family: 'Roboto', sans-serif;
 }
-button#current-location {
+/* button#current-location {
     background-color: #8EC9F9;
     margin-left: 10px;
     color: #6c757d;
@@ -72,14 +72,7 @@ button#current-location {
     border: 1px solid #6c757d;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
-
-    /* #current-location:hover {
-        transition: #6c757d 0.15s ease-in-out;background-color: 0.15s ease-in-out;
-        border-color: 0.15s ease-in-out;
-        box-shadow: 0.15s ease-in-out;
-    } */
-}
-
+} */
 
 .cards-wrap {
     display: flex;
@@ -87,7 +80,7 @@ button#current-location {
     align-items: center;
 }
 .cards-wrap .card {
-    margin: 20px 0;
+    margin: 20px 0 10px 0;
     background-color: #8EC9F9;
     border: 2px solid #2c9bf0f5;
     border-radius: 8px;
@@ -110,4 +103,11 @@ button#current-location {
 .card .night {
     font-weight: 100;
     font-size: 20px;
+}
+
+.project-link {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
 }
