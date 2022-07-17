@@ -1,5 +1,3 @@
-let currentDate = document.querySelector(".current-date");
-
 let currentTime = new Date();
 let days = [
       "Sunday",
@@ -27,19 +25,30 @@ let months = [
 ];
 let month = months[currentTime.getMonth()];
 let date = currentTime.getDate();
+let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
 
 function showTemerature(response) {
+  let localCity = document.querySelector("#selected-city");
+  localCity.innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
   let requestCityTemp = document.querySelector("#current-temp");
   requestCityTemp.innerHTML = temperature;
-  console.log(response.data.name);
-  let localCity = document.querySelector("#selected-city");
-  localCity.innerHTML = response.data.name;
+  
+  console.log(response.data);
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `${response.data.main.humidity} %`;
+  let pressureElement = document.querySelector("#pressure");
+  pressureElement.innerHTML = response.data.main.pressure;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
+  let visibilityElement = document.querySelector("#visibility");
+  visibilityElement.innerHTML = `${Math.round(response.data.visibility)/1000} km`;
+
 }
 
 function changeCity(event) {
-  event.preventDefault();
+  // event.preventDefault();
   let inputCity = document.querySelector(".form-control");
   let newCity = document.querySelector("#selected-city");
   if (inputCity.value) {
