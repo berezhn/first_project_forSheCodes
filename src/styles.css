@@ -44,12 +44,15 @@ header .current-date {
     font-family: 'Roboto', sans-serif;
 }
 
-/* .information img {
-    
-} */
+.information #icon-main {
+    display: block;
+    margin: 0 auto;
+    padding-top: 5px;
+}
 
 .information ul {
     list-style-type: none;
+    padding-left: 30px;
 }
 
 .information .attribute {
