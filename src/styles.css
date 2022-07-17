@@ -16,36 +16,44 @@ header .current-date {
     font-family: 'Roboto', sans-serif;
 }
 
-.information {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.information p, span {
+.information #selected-city {
+    margin: 0;
+    padding-left: 20px;
     font-size: 38px;
     font-weight: bold;
     text-decoration: none;
     color: white;
     font-family: 'Roboto', sans-serif;
 }
+.information #description, #current-temp {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
 .information .temp-celsius {
     margin-left: 5px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
     font-family: 'Roboto', sans-serif;
 }
 
-.information img {
-    margin-left: 40px;
-}
+/* .information img {
+    
+} */
 
 .information ul {
     list-style-type: none;
 }
 
 .information .attribute {
+    padding-top: 10px;
     font-size: 16px;
     font-weight: 400;
     color: white;
@@ -53,6 +61,7 @@ header .current-date {
     font-family: 'Roboto', sans-serif;
 }
 .information .characteristics {
+    padding-top: 10px;
     font-size: 16px;
     font-weight: 400;
     color: white;

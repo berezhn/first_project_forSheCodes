@@ -31,6 +31,8 @@ currentDate.innerHTML = `${day}, ${month} ${date}`;
 function showTemerature(response) {
   let localCity = document.querySelector("#selected-city");
   localCity.innerHTML = response.data.name;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].main;
   let temperature = Math.round(response.data.main.temp);
   let requestCityTemp = document.querySelector("#current-temp");
   requestCityTemp.innerHTML = temperature;
@@ -48,7 +50,7 @@ function showTemerature(response) {
 }
 
 function changeCity(event) {
-  // event.preventDefault();
+  event.preventDefault();
   let inputCity = document.querySelector(".form-control");
   let newCity = document.querySelector("#selected-city");
   if (inputCity.value) {
