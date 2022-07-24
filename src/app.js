@@ -28,6 +28,24 @@ let date = currentTime.getDate();
 let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
 
+function displayForecast () {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  days.forEach(function(day) {
+    forecastHTML = forecastHTML + 
+    `
+      <div class="col-2 weather-forecast-card">
+        <p class="weather-forecast-day">${day}</p>
+        <p class="weather-forecast-temp">28°C<span class="weather-forecast-night">/14°C</span></p>
+        <img class="weather-forecast-img" src="http://openweathermap.org/img/wn/01d@2x.png" alt="sun">
+      </div>  
+    `;
+  });
+  forecastElement.innerHTML = forecastHTML;
+};
+
 function showTemerature(response) {
   let localCity = document.querySelector("#selected-city");
   let descriptionElement = document.querySelector("#description");
@@ -37,6 +55,8 @@ function showTemerature(response) {
   let windElement = document.querySelector("#wind");
   let visibilityElement = document.querySelector("#visibility");
   let iconElement = document.querySelector("#icon-main");
+
+  displayForecast ();
 
   celsiusTemperature = response.data.main.temp;
 
@@ -65,8 +85,6 @@ function changeCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemerature);
 }
-let inputForm = document.querySelector(".input-group");
-inputForm.addEventListener("click", changeCity);
 
 function showPosition(position) {
   let latitude = position.coords.latitude;
@@ -99,6 +117,9 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
+
+let inputForm = document.querySelector(".input-group");
+inputForm.addEventListener("click", changeCity);
 
 let buttonLocalPosition = document.querySelector("#current-location");
 buttonLocalPosition.addEventListener("click", getCurrentPosition);
