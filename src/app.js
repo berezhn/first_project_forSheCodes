@@ -28,7 +28,9 @@ let date = currentTime.getDate();
 let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
 
-function displayForecast () {
+function displayForecast (response) {
+  console.log(response.data.daily);
+  
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -46,6 +48,14 @@ function displayForecast () {
   forecastElement.innerHTML = forecastHTML;
 };
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "d249412306d1588b619a3dbbbac6d342";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemerature(response) {
   let localCity = document.querySelector("#selected-city");
   let descriptionElement = document.querySelector("#description");
@@ -55,8 +65,6 @@ function showTemerature(response) {
   let windElement = document.querySelector("#wind");
   let visibilityElement = document.querySelector("#visibility");
   let iconElement = document.querySelector("#icon-main");
-
-  displayForecast ();
 
   celsiusTemperature = response.data.main.temp;
 
@@ -69,7 +77,7 @@ function showTemerature(response) {
   visibilityElement.innerHTML = `${Math.round(response.data.visibility)/1000} km`;
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
-  console.log(response.data);
+  getForecast(response.data.coord);
 }
 
 function changeCity(event) {
