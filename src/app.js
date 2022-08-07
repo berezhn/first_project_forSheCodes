@@ -28,22 +28,31 @@ let date = currentTime.getDate();
 let currentDate = document.querySelector(".current-date");
 currentDate.innerHTML = `${day}, ${month} ${date}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast (response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
-  days.forEach(function(day) {
-    forecastHTML = forecastHTML + 
-    `
-      <div class="col-2 weather-forecast-card">
-        <p class="weather-forecast-day">${day}</p>
-        <p class="weather-forecast-temp">28°C<span class="weather-forecast-night">/14°C</span></p>
-        <img class="weather-forecast-img" src="http://openweathermap.org/img/wn/01d@2x.png" alt="sun">
-      </div>  
-    `;
+  
+  forecast.forEach(function(forecastDay, index) {
+    if (index < 5) {
+      forecastHTML = forecastHTML + 
+      `
+        <div class="col-2 weather-forecast-card">
+          <p class="weather-forecast-day">${formatDay(forecastDay.dt)}</p>
+          <p class="weather-forecast-temp">${Math.round(forecastDay.temp.max)}°C<span class="weather-forecast-night">/${Math.round(forecastDay.temp.min)}°C</span></p>
+          <img class="weather-forecast-img" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="${forecastDay.weather[0].description}">
+        </div>  
+      `;
+    }
   });
   forecastElement.innerHTML = forecastHTML;
 };
