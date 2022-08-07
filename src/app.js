@@ -58,10 +58,8 @@ function displayForecast (response) {
 };
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "d249412306d1588b619a3dbbbac6d342";
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -116,33 +114,7 @@ function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function showFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function showCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
 let inputForm = document.querySelector(".input-group");
 inputForm.addEventListener("click", changeCity);
 
-let buttonLocalPosition = document.querySelector("#current-location");
-buttonLocalPosition.addEventListener("click", getCurrentPosition);
-
-let fahrenheitLink = document.querySelector("#temp-fahrenheit");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#temp-celsius");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
+let currentLocation = getCurrentPosition();
